@@ -1,0 +1,41 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: app-test
+  description: Application stack for app-test
+  annotations:
+    github.com/project-slug: huttyman-ais/app-test-infra
+spec:
+  owner: user:default/alice
+  domain: default
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: app-test-infra
+  description: Terraform-managed Azure infrastructure for app-test (dev)
+  annotations:
+    github.com/project-slug: huttyman-ais/app-test-infra
+    backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://github.com/huttyman-ais/app-test-infra/actions
+      title: Terraform workflow runs
+      icon: github
+spec:
+  type: infrastructure
+  owner: user:default/alice
+  system: app-test
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: app-test-database
+  description: PostgreSQL Flexible Server database for app-test (dev)
+spec:
+  type: database
+  owner: user:default/alice
+  system: app-test
+  dependencyOf:
+    - component:app-test-backend
