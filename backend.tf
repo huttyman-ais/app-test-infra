@@ -15,9 +15,9 @@ terraform {
   # One-time platform setup: see docs/implementation-guide.md §3.
   # Each app/environment gets its own state key so repos never collide.
   backend "azurerm" {
-    resource_group_name = "rg-idp-platform"
-    storage_account_name = "stidptfstate" # replace with the actual generated account name
-    container_name       = "tfstate"
+    resource_group_name  = "rg-idp-platform"
+    storage_account_name = "stidptfstate0399fb"
+    container_name        = "tfstate"
     key                   = "app-test/dev.tfstate"
   }
 }
